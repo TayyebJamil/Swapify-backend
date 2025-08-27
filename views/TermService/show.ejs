@@ -1,0 +1,179 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Terms Of Service</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/admin/users">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="/admin/termServices">Term</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="/admin/termServices/<%=resources.data.id %>">
+            <%= resources?.data?.id %>
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <ul class="nav nav-tabs nav-tabs-bordered">
+              <li class="nav-item">
+                <button
+                  class="nav-link active"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-overview"
+                >
+                  Overview
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button
+                  class="nav-link profile-edit"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-edit"
+                >
+                  Edit
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#Actions"
+                >
+                  Actions
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content pt-2">
+              <div
+                class="tab-pane fade show active profile-overview"
+                id="profile-overview"
+              >
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title">Term of Service</h5>
+                  </div>
+                  <div class="col text-end">
+                    <span style="padding-left: 40px">
+                      <% if (!resources?.data?.attributes?.isPublished) { %>
+                      <div style="color: red">Not Published</div>
+                      <% } else { %>
+                      <div style="color: green">Published</div>
+                      <% } %>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Details</div>
+                  <div class="col-lg-9 col-md-8">
+                    <% 
+                    const details = resources?.data?.attributes?.details || ''; 
+                    const replacedDetails = details.replace(/<[^>]*>?|&nbsp;/gm, (match) => {
+                      if (match === '&nbsp;') {
+                        return '  ';
+                      } else {
+                        return '';
+                      }
+                    });
+                    %>
+                    <%= replacedDetails %>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Published</div>
+                  <div class="col-lg-9 col-md-8">
+                    <%= resources?.data?.attributes?.isPublished %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Created At</div>
+                  <div class="col-lg-9 col-md-8">
+                    <%-include("TimeFormat/convertToLocalZone",{ time:
+                    resources?.data?.attributes?.createdAt });%>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                <form
+                  class="form"
+                  method="post"
+                  action="/admin/termServices/<%-resources.data.id %>?_method=PUT&path=profile-edit"
+                  enctype="application/x-www-form-urlencoded"
+                >
+                  <div class="row mb-3">
+                    <label for="userId" class="col-md-4 col-lg-3 col-form-label"
+                      >Id</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        disabled
+                        required
+                        type="text"
+                        class="form-control"
+                        value="<%= resources.data.id %>"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="details"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Description</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input id="trix-editor" type="hidden" name="details" value="<%=resources.data.attributes?.details%>">
+                      <trix-editor input="trix-editor"></trix-editor>
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                      Save Changes
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade pt-3" id="Actions">
+                <form
+                  class="form"
+                  id="isPublished"
+                  method="POST"
+                  action="/admin/termServices/<%-resources.data.id %>?_method=patch"
+                >
+                  <%-
+                  include("Action/publish",{isPublished:resources?.data?.attributes?.isPublished
+                  }); %>
+                </form>
+                <form
+                  class="form"
+                  id="deleteAcademy"
+                  method="POST"
+                  action="/admin/termServices/<%-resources.data.id %>?_method=delete"
+                >
+                  <%-
+                  include("Action/delete_action",{deleted:resources?.data?.attributes?.isDeleted,
+                  reason: resources?.data?.attributes?.isDeleteReason }); %>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

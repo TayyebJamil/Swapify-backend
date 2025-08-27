@@ -1,0 +1,15 @@
+{
+  "invalidPassword": "Incorrect password.",
+  "invalidPasswordDescription": "Please provide the correct password.",
+  "passwordConfirmation": "Password Confirmation",
+  "login-success": "Logged in successfully.",
+  "no-user": "No user found.",
+  "logoutError": "Error occurred while trying to logout.",
+  "currentPassword": "The new password cannot be the same as the previous password.",
+  "contactSupport": "If you need further assistance, please contact support.",
+  "duplicateEmailError": "This email address is already in use. Please use a different one.",
+  "duplicateContactError": "This contact number is already registered. Please use a different one.",
+  "duplicateContactEmailError": "Both the email address and contact number you provided are already registered. Please log in.",
+  "notValidAccountEmail": "Given email is not associated with this account",
+  "duplicateCompanyName": "Company Name already exists"
+}

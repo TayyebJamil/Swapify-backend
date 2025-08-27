@@ -1,0 +1,11 @@
+{
+  "noContentFound": "No Term added yet.",
+  "nodetailsServices": "Something went wrong.Please try again.",
+  "successCreateTerm": "Term created successfully.",
+  "errorCreateTerm": "Error creating term. Please try again.",
+  "successUpdatingTerm": "Terms updated successfully.",
+  "errorUpdatingTerm": "Error updating term.Please try again.",
+  "alreadyPublishedTerm": "Another Terms is published.Please hide that first.",
+  "successDeletingTerm": "Term deleted successfully.",
+  "errorDeletingTerm": "Error deleting term."
+}

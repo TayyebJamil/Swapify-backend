@@ -1,0 +1,45 @@
+<!-- ======= Header ======= -->
+<header
+  id="header"
+  class="header fixed-top d-flex align-items-center"
+  style="background-color: #b5c9a5"
+>
+  <div class="d-flex align-items-center justify-content-between">
+    <a
+      href="/admin/users"
+      class="logo d-flex align-items-center"
+      style="padding-left: 10px"
+    >
+      <!-- <img src="/logo.png" alt="" /> -->
+      <span>Swapify</span>
+    </a>
+  </div>
+
+  <div class="search-bar" style="text-align: center">
+    <% if (user?.roleName === 'admin') { %>
+    <span
+      style="
+        font-size: 26px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+      "
+    >
+      Admin Panel
+    </span>
+    <% } else if (user?.roleName === 'agent') { %>
+    <span
+      style="
+        font-size: 26px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+      "
+    >
+      Agent Panel
+    </span>
+    <% } %>
+  </div>
+  <%- include("Nav Bar/nav"); %>
+
+  <!-- End Icons Navigation -->
+</header>
+<!-- End Header -->

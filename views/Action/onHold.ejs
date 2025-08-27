@@ -1,0 +1,24 @@
+<div class="row mb-3">
+  <label for="onHoldInput" class="col-md-3 col-lg-2 col-form-label">
+    Hold
+  </label>
+
+  <div class="col-md-8 col-lg-8">
+    <input
+      required
+      name="onHoldReason"
+      type="text"
+      class="form-control"
+      placeholder="Reason of Holding"
+      id="onHoldReason"
+      value="<%=booleanCheck(onHold, onHoldReason)%>"
+    />
+    <input hidden required name="onHold" class="form-check-input" id="onHold"
+    value= <%= ifElseCondition(onHold, "false", "true") %> />
+  </div>
+  <div class="col-md-1 col-lg-1 text-center">
+    <button type="submit" class="btn btn-sm btn-warning btn-warning-pad">
+      <%= ifElseCondition(onHold, "Allow", "Hold") %>
+    </button>
+  </div>
+</div>

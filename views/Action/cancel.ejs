@@ -1,0 +1,29 @@
+<div class="row mb-3">
+  <label for="cancelInput" class="col-md-3 col-lg-2 col-form-label">
+    Cancel
+  </label>
+  <div class="col-md-8 col-lg-9">
+    <input
+      name="cancellationReason"
+      type="text"
+      required
+      class="form-control"
+      placeholder="Reason of cancelling"
+      id="cancellationReason"
+      value="<%=booleanCheck(cancelled, cancellationReason)%>"
+    />
+    <input hidden required name="cancelled" class="form-check-input"
+    id="cancelled" value= <%= ifElseCondition(cancelled, "false", "true") %> />
+  </div>
+  <div class="col-md-1 col-lg-1 text-center">
+    <% if (eventPassed === "true") { %>
+    <button disabled type="submit" class="btn btn-sm btn-warning">
+      <%= ifElseCondition(cancelled, "Redo", "Cancel") %>
+    </button>
+    <% } else { %>
+    <button type="submit" class="btn btn-sm btn-warning">
+      <%= ifElseCondition(cancelled, "Redo", "Cancel") %>
+    </button>
+    <% } %>
+  </div>
+</div>

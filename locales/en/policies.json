@@ -1,0 +1,11 @@
+{
+  "noContentFound": "No Policy added yet.",
+  "nodetailsServices": "Something went wrong.Please try again.",
+  "successCreatePolicy": "Policy created successfully.",
+  "errorCreatePolicy": "Error creating policy. Please try again.",
+  "successUpdatingPolicy": "Policy updated successfully.",
+  "errorUpdatingPolicy": "Error updating policy.Please try again.",
+  "alreadyPublished": "Another Policy is published.Please hide that first.",
+  "successDeletingPolicy": "Policy deleted successfully.",
+  "errorDeletingPolicy": "Error deleting policy."
+}

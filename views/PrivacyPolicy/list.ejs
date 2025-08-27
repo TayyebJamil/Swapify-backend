@@ -1,0 +1,73 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Privacy Policies</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/admin/users">Home</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="/admin/privacyPolicies">Privacy Policies</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body" style="overflow: auto">
+            <button class="btn btn-light mt-4" style="float: right">
+              <a href="/admin/privacyPolicies/new">
+                <i class="bi"></i><span>Add Privacy Policy</span>
+              </a>
+            </button>
+            <h5 class="card-title">Privacy Policy List</h5>
+            <table class="table table-hover datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Published</th>
+                  <th scope="col">Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for( const [index, term] of resources.entries() ) { %>
+                <tr
+                  style="cursor: pointer"
+                  class="clickable-row"
+                  data-href="/admin/privacyPolicies/<%=term._id %>"
+                >
+                  <th scope="row">
+                    <a href="/admin/privacyPolicies/<%=term?.id %>"
+                      ><%=index+1 %></a
+                    >
+                  </th>
+                  <td>
+                    <% 
+                    const details = term?.details || ''; 
+                    const replacedDetails = details.replace(/&nbsp;/g, '\n').substring(0, 100);
+                    const plainText = replacedDetails.replace(/<[^>]*>?/gm, '');
+                    %>
+                    <%= plainText %>
+                  </td>
+                  <% if (term?.isPublished === true) { %>
+                  <td style="color: green"><%= term?.isPublished %></td>
+                  <% } else { %>
+                  <td style="color: red"><%= term?.isPublished %></td>
+                  <% } %>
+                  <td>
+                    <%-include("TimeFormat/convertToLocalZone",{ time:
+                    term.createdAt });%>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

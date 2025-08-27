@@ -1,0 +1,7 @@
+{
+  "errorCreateFAQ": "An error occurred while creating the FAQ. Please check the details and try again.",
+  "successCreateFAQ": "FAQ created successfully!",
+  "nodetailsFAQ": "No details provided for the FAQ.",
+  "successUpdatingFAQ": "FAQ updated successfully!",
+  "errorUpdatingFAQ": "An error occurred while updating the FAQ. Please try again."
+}

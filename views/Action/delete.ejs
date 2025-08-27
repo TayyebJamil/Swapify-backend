@@ -1,0 +1,28 @@
+<div class="row mb-3 align-items-center">
+  <label for="isDeleteReason" class="col-md-3 col-lg-2 col-form-label"
+    >Delete
+  </label>
+
+  <div class="col-md-6 col-lg-8">
+    <input
+      required
+      name="isDeleteReason"
+      type="text"
+      class="form-control"
+      placeholder="Reason of Deleting"
+      id="isDeleteReason"
+      value="<%=booleanCheck(deleted, reason)%>"
+    />
+
+    <input required hidden name="isDeleted" class="form-check-input"
+    id="isDeleted" value= <%=ifElseCondition(deleted, "false", "true")%> />
+  </div>
+  <div class="col-md-1 col-lg-1">
+    <button
+      type="submit"
+      class="btn btn-sm btn-danger btn-warning-pad delete-btn"
+    >
+      <%= ifElseCondition(deleted, "Allow", "Delete") %>
+    </button>
+  </div>
+</div>

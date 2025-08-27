@@ -1,0 +1,16 @@
+{
+  "invalidPassword": "Incorrect password.",
+  "invalidPasswordDescription": "Please provide the correct password.",
+  "passwordNotMatching": "Current password is incorrect.",
+  "passwordConfirmation": "Password Confirmation",
+  "login-success": "Logged in successfully.",
+  "no-user": "No user found.",
+  "logoutError": "Error occurred while trying to logout.",
+  "currentPassword": "The new password cannot be the same as the previous password.",
+  "contactSupport": "If you need further assistance, please contact support.",
+  "alreadyRegistered": "You are already registered. Please log in.",
+  "notValidAccountEmail": "Given email is not associated with this account",
+  "noUserFound": "No user found with this email.",
+  "userBlocked": "User is blocked please contact support",
+  "emailAlreadyExist": "Email already exists, Please try using a new one"
+}

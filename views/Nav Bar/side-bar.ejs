@@ -1,0 +1,46 @@
+<aside id="sidebar" class="sidebar">
+  <script>
+    // Log role in the console
+    console.log("User Role: <%= user?.roleName %>");
+  </script>
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <% for (const item of permission) { %>
+      <li class="nav-item">
+        <% if (item?.subSections && item.subSections.length > 0) { %>
+          <a
+            class="nav-link sidebar-link collapsed <%= item?.data_bs_target %>"
+            data-bs-target="#<%= item?.data_bs_target %>"
+            data-bs-toggle="collapse"
+            href="javascript:void(0);"
+          >
+            <i class="<%= item?.logo %>"></i>
+            <span><%= item?.name %></span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul
+            id="<%= item?.data_bs_target %>"
+            class="nav-content collapse <%= item?.data_bs_target %>"
+            data-bs-parent="#sidebar-nav"
+          >
+            <% for (const subsection of item.subSections) { %>
+              <li>
+                <a href="<%= subsection?.url %>">
+                  <i class="bi bi-circle"></i>
+                  <span><%= subsection?.name %></span>
+                </a>
+              </li>
+            <% } %>
+          </ul>
+        <% } else { %>
+          <a
+            class="nav-link"
+            href="<%= item?.url %>"
+          >
+            <i class="<%= item?.logo %>"></i>
+            <span><%= item?.name %></span>
+          </a>
+        <% } %>
+      </li>
+    <% } %>
+  </ul>
+</aside>

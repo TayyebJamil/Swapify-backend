@@ -1,0 +1,10 @@
+<div class="row mb-3">
+  <input hidden required name="status" class="form-check-input" id="status"
+  value= <%= ratingCondition(status, "Rejected", "Approved") %> />
+
+  <div class="col-md-1 col-lg-1 text-center">
+    <button type="submit" class="btn btn-sm btn-warning">
+      <%= ratingCondition(status, "Reject", "Approve") %>
+    </button>
+  </div>
+</div>

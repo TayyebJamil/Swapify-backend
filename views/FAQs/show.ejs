@@ -1,0 +1,224 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>FAQ</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/admin/users">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="/admin/faqs">FAQ</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="/admin/faqs/<%=resources.data.id %>">
+            <%= resources?.data?.attributes?.question %>
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section profile">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body pt-3">
+            <ul class="nav nav-tabs nav-tabs-bordered">
+              <li class="nav-item">
+                <button
+                  class="nav-link active"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-overview"
+                >
+                  Overview
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button
+                  class="nav-link profile-edit"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-edit"
+                >
+                  Edit
+                </button>
+              </li>
+
+              <li class="nav-item">
+                <button
+                  class="nav-link"
+                  data-bs-toggle="tab"
+                  data-bs-target="#venueActions"
+                >
+                  Actions
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content pt-2">
+              <div
+                class="tab-pane fade show active profile-overview"
+                id="profile-overview"
+              >
+                <h5 class="card-title">FAQ</h5>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Question</div>
+                  <div class="col-lg-9 col-md-8">
+                    <%= resources?.data?.attributes?.question %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Answer</div>
+                  <div class="col-lg-9 col-md-8">
+                    <%= resources?.data?.attributes?.answer %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Published</div>
+                  <div class="col-lg-9 col-md-8">
+                    <%= resources?.data?.attributes?.published %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Deleted</div>
+                  <div
+                    class="col-lg-9 col-md-8"
+                    style="text-transform: capitalize"
+                  >
+                    <%=ifElseCondition(resources?.data?.attributes.isDeleted,
+                    resources?.data?.attributes.isDeleted,"false") %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Delete Reason</div>
+                  <div class="col-lg-9 col-md-8">
+                    <%=ifElseCondition(resources?.data?.attributes.isDeleted,
+                    resources?.data?.attributes?.isDeleteReason,"") %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Created At</div>
+                  <div class="col-lg-9 col-md-8">
+                    <%-include("TimeFormat/convertToLocalZone",{ time:
+                    resources?.data?.attributes?.createdAt });%>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                <form
+                  class="form"
+                  method="post"
+                  action="/admin/faqs/<%-resources.data.id %>?_method=PUT&path=profile-edit"
+                  enctype="application/x-www-form-urlencoded"
+                >
+                  <div class="row mb-3">
+                    <label for="userId" class="col-md-4 col-lg-3 col-form-label"
+                      >Id</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        disabled
+                        required
+                        type="text"
+                        class="form-control"
+                        value="<%= resources.data.id %>"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="name" class="col-md-4 col-lg-3 col-form-label"
+                      >Question</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <input
+                        required
+                        name="question"
+                        type="text"
+                        class="form-control"
+                        id="question"
+                        value="<%= resources?.data?.attributes?.question %>"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label
+                      for="description"
+                      class="col-md-4 col-lg-3 col-form-label"
+                      >Answer</label
+                    >
+                    <div class="col-md-8 col-lg-9">
+                      <textarea id="" name="answer" class="form-control answer">
+<%= resources?.data?.attributes?.answer %>
+                  </textarea
+                      >
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                      Save Changes
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade pt-3" id="venueActions">
+                <form
+                  class="form"
+                  id="holdAcademy"
+                  method="POST"
+                  action="/admin/faqs/<%-resources.data.id %>?_method=patch"
+                >
+                  <div class="row mb-3">
+                    <label
+                      for="onHoldInput"
+                      class="col-md-3 col-lg-2 col-form-label"
+                    >
+                      Publish
+                    </label>
+                    <div
+                      class="col-md-2 col-lg-2"
+                      style="display: flex; align-items: flex-start"
+                    >
+                      <input hidden required name="published"
+                      class="form-check-input" id="published" value= <%=
+                      ifElseCondition(resources?.data?.attributes?.published,
+                      "false", "true") %> />
+                      <div class="text-center">
+                        <button
+                          type="submit"
+                          class="btn btn-sm btn-warning btn-warning-pad"
+                          style="float: right; margin-right: 32px"
+                        >
+                          <%=
+                          ifElseCondition(resources?.data?.attributes?.published,
+                          "Un Publish", "Publish") %>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+
+                <form
+                  class="form"
+                  id="deleteAcademy"
+                  method="POST"
+                  action="/admin/faqs/<%-resources.data.id %>?_method=delete"
+                >
+                  <%-
+                  include("Action/delete",{deleted:resources?.data?.attributes?.isDeleted,
+                  reason: resources?.data?.attributes?.isDeleteReason }); %>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
